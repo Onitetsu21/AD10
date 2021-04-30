@@ -1,0 +1,12 @@
+Host		bastion
+User		vagrant
+Hostname	192.168.33.100
+Port 		22
+
+Host 192.168.33.*
+  User vagrant
+  StrictHostKeyChecking no
+  ControlPath ~/.ssh/controlmasters/%r@%h:%p
+  ControlMaster auto
+  ControlPersist 10m
+  ProxyCommand ssh -q bastion nc -q0 %h 22
